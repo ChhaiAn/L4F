@@ -3,6 +3,11 @@ session_start(); ob_start();
 include("adminHeader.php");
 include("cdb.php");
 
+$query = "SELECT COUNT(user_id) FROM `USER_REGISTRATION`";
+$result = mysqli_query($connection,$query);
+$row = mysqli_fetch_array($result);
+$userCount = $row['COUNT(user_id)'];
+
 
 
 ?>
@@ -53,19 +58,19 @@ include("cdb.php");
                                                  <td>' . $row['active'] . '</td>
 	                                                </tr>';
                                                   }
-
-
-
-
-
-
-
-
-
                                         ?>
 
 
                                     </table>
+                                    <?php
+                                    if($_SESSION['usercount'] > $userCount) {
+                                      echo "
+                                      <div class='alert-danger text-center mt-3'
+                                      id = 'user_deleted_msg'>
+                                          <p>A user has been deleted!</p>
+                                      </div>
+                                      ";
+                                    }?>
 
                             </div>
                     </div>

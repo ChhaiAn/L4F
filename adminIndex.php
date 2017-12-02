@@ -8,6 +8,7 @@ $query = "SELECT COUNT(user_id) FROM `USER_REGISTRATION`";
 $result = mysqli_query($connection,$query);
 $row = mysqli_fetch_array($result);
 $userCount = $row['COUNT(user_id)'];
+$_SESSION['usercount'] = $userCount;
 if(!$result) {
   echo mysqli_error($connection);
 }

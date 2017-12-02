@@ -9,7 +9,7 @@
 }
 
 .my-right-content{
-   
+
     padding:0;
     background-color: #f3f3f3;
 }
@@ -19,8 +19,8 @@
     font-weight: 400;
     font-size: 1.5em;
     padding: 10px 0;
-    
-    
+
+
 }
 .list-group-item.active {
     border:none;
@@ -59,3 +59,6 @@
     background-color: #117A8B;
     color: white;
 }
+
+
+/**u USER DELETED ***/
