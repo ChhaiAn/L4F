@@ -10,6 +10,7 @@ $userCount = $row['COUNT(user_id)'];
 
 
 
+
 ?>
 
 <div id="wrapper">
@@ -23,7 +24,8 @@ $userCount = $row['COUNT(user_id)'];
                             </a>
                             <a href="view-user.php" class="list-group-item list-group-item-action"><span><i class="fa fa-user" aria-hidden="true"></i>
                             </span>Users &amp; Privileges</a>
-                            <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
+                            <a href="create-new-user.php" class="list-group-item list-group-item-action"><span><i class="fa fa-user-plus" aria-hidden="true"></i>
+                            </span>Create New User</a>
                             <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
                             <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
                     </div>

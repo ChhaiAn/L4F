@@ -4,6 +4,9 @@ include("adminHeader.php");
 include("cdb.php");
 $_GET['user_id'];
 
+
+
+
 $query = "SELECT * FROM USER_REGISTRATION WHERE user_id = '".$_GET['user_id']."'";
 $result = mysqli_query($connection,$query);
 if (!$result){
@@ -19,13 +22,19 @@ $active = $row['active'];
 $userid = $row['user_id'];
 $usergender= $row['gender'];
 $userpicture = $row['profile_image'];
+
 if ($userpicture == ""){
   $pictureDefault = false;
 }
 
+
+
+
+
 //UPDATE THE DATABASE
 
 if(isset($_POST['submit'])) {
+
   $update_username = $_POST['userName'];
   $update_email = $_POST['userEmail'];
   $update_userlevel = $_POST['userLevel'];
@@ -45,10 +54,13 @@ if(isset($_POST['submit'])) {
     echo mysqli_error($connection);
   }
 
-  if ($update_userlevel == 5){
-    header("Location: user_edit_profile.php?user_id=$userid");
-    exit();
-  }
+
+
+  // if ($update_userlevel == 5){
+  //   header("Location: user_edit_profile.php?user_id=$userid");
+  //   exit();
+  // }
+
   header("Location: user_edit_profile.php?user_id=$userid");
 
 }
@@ -167,7 +179,8 @@ $tmp_file = $_FILES['the_file']['tmp_name'];
 
                             <a href="view-user.php" class="list-group-item list-group-item-action"><span><i class="fa fa-user" aria-hidden="true"></i>
                             </span>Users &amp; Privileges</a>
-                            <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
+                            <a href="create-new-user.php" class="list-group-item list-group-item-action"><span><i class="fa fa-user-plus" aria-hidden="true"></i>
+                            </span>Create New User</a>
                             <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
                             <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
                     </div>

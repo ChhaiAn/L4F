@@ -15,8 +15,17 @@ include("cdb.php");
          $a = mysqli_fetch_array($result);
 
          $db['user'] = $a['username'];
+         $db['gender'] = $a['gender'];
          $db['email'] = $a['email'];
          $db['picture'] = $a['profile_image'];
+         if( $db['picture'] == ""){
+            if($db['gender'] == "male"){
+              $db['picture'] = 'boy';
+            }
+            else {
+              $db['picture'] = 'girl';
+            }
+         }
          $db['secuQuestion'] = $a['secure_question'];
          $db['secuAnswer'] = $a['secure_answer'];
          $db['password'] = $a['password'];

@@ -15,7 +15,7 @@ $usernameExist = false;
 $accountFound = false;
 $isMe = false;
 $userLevel;
-  
+
 
 
 
@@ -627,6 +627,8 @@ if(isset($_POST['isMe'])){
         var secuQuestion = '';
         var email = '';
         var response='';
+        var gender='';
+        var src='';
             $.ajax({
                 datatype: 'JSON',
                 async: false,
@@ -645,9 +647,18 @@ if(isset($_POST['isMe'])){
                         secuQuestion = response.secuQuestion;
                         secuAnswer = response.secuAnswer;
                         id = response.id;
-                        var src = " src='uploads/"+user+"/userprofile/"+pictureName+"'>";
+
+                        if (pictureName == 'boy'){
+                           src = " src='images/icon/userProfile/boy.svg'";
+                        } else if(pictureName == 'girl'){
+                          src = " src='images/icon/userProfile/girl.svg'";
+                        } else {
+                          src = " src='uploads/"+user+"/userprofile/"+pictureName+"'>";
+                        }
+
+
                         var message =  "<p class='alert alert-success'>Account Found</p>";
-                            message += "<img class='forgetPasswordUserPic'"+src ;
+                            message += "<img class='forgetPasswordUserPic'"+src +"<br>";
                             message += "<p class='flex-item '>"+user+"</p>";
                             message +=  "<p class='flex-item'>"+email+"</p>";
                             message +=  "<button class='btn btn-primary text-center' data-toggle='modal' data-target='#secondModal' name='itMe' id='itMe'>It's me!</button>";

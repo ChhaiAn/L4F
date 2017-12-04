@@ -123,6 +123,10 @@ div.container-fluid {
     background: #A64D1E;
     color: white;
 }
+.btn-myOutline-logIn-con:hover {
+    background:  #A64D1E;
+    color: white !important;
+}
 .btn-myOutline-logOut {
     border: 1px solid red;
     background: none;
