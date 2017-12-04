@@ -1,8 +1,9 @@
 <?php
-include('cdb.php');
-include('adminHeader.php');
 session_start();
 ob_start();
+include('cdb.php');
+include('adminHeader.php');
+
 
 $hashedPassword = '';
 $flag = true;
@@ -79,30 +80,8 @@ if(isset($_POST['create'])) {
         $query = "INSERT INTO USER_REGISTRATION(`username`,`password`,`email`,`gender`,`secure_question`,`secure_answer`,`date_of_birth`,`user_level`,`active`) VALUES ('$username','$hashedPassword','$email','$gender','$secuQuestion','$secuAnswer','$date_of_birth',0,'Y')";
         $result = mysqli_query($connection, $query);
 
-        if($result) {
-            echo "wrote to database";
-        }
-        else {
-            echo "fail to database";
-        }
-        //********Sending email confirmations
-        $body = "Thank you, ".$username." for registering with L4F, we hope we resolve your cravings!";
-        $body = $body. "echo <p> Your password is ".$password ;
-        mail($email, 'Registration Confirmation',
-        $body, 'From: lee.supermonkey@gmail.com');
-
-
-        $query = "SELECT `username` FROM `USER_REGISTRATION` WHERE `email` = '".$email."'";
-        $result = mysqli_query($connection, $query);
-        $a = mysqli_fetch_assoc($result);
-
-
-
-
-
-
       header("Location: adminIndex.php");
-      exit();
+
 
 
         /*KILL QUERY*/
@@ -117,76 +96,6 @@ if(isset($_POST['create'])) {
 
 }
 /******************************************************************************************/
-/*******************************************************upload pic******************/
-if (isset($_POST['upload'])) { // Handle the form.
-
-
-// Desired folder structure
-$structure = 'uploads/'.strtolower($userName).'/userprofile/';
-
-$tmp_file = $_FILES['the_file']['tmp_name'];
-// Make folder
-mkdir($structure, 0777, true);
-
-$image = ($_FILES['the_file']['name']);
-
-$image = mysqli_real_escape_string($connection,$image);
-
-//Store image name inside database
-$query = "UPDATE `USER_REGISTRATION` SET `profile_image` = '$image' WHERE `user_id` = \"$db_id\"";
-$result = mysqli_query($connection, $query);
-$tmp_file = $_FILES['the_file']['tmp_name'];
-
-
-if(!$result) {
-    echo mysqli_error($connection);
-}
-     // Try to move the uploaded file:
-        if (move_uploaded_file ($tmp_file, $structure.$image)) {
-
-            //email confirmation for profile
-            $body = "Thank you, ".$userName." This is a confirmation that we have successfully uploaded your profile picture!!";
-
-            mail($db_email, 'Profile Picture Confirmation',
-            $body, 'From: lee.supermonkey@gmail.com');
-            print '<p class="profile-conf">Your file has been uploaded.</p>';
-
-        } else { // Problem!
-
-            print '<p style="color: red;">Your file could not be uploaded because: ';
-
-            // Print a message based upon the error:
-            switch ($_FILES['the_file']['error']) {
-                case 1:
-                    print 'The file exceeds the upload_max_filesize setting in php.ini';
-                    break;
-                case 2:
-                    print 'The file exceeds the MAX_FILE_SIZE setting in the HTML form';
-                    break;
-                case 3:
-                    print 'The file was only partially uploaded';
-                    break;
-                case 4:
-                    print 'No file was uploaded';
-                    break;
-                case 6:
-                    print 'The temporary folder does not exist.';
-                    break;
-                default:
-                    print 'Something unforeseen happened.';
-                    break;
-            }
-
-            print '.</p>'; // Complete the paragraph.
-
-        } // End of move_uploaded_file() IF.
-        header("Location: profile.php");
-    } // End of submission IF.
-
-     // End of submission IF.
-
-    // Leave PHP and display the form:
-
 
 
 
@@ -201,7 +110,8 @@ if(!$result) {
                           Welcome, <?php echo $_SESSION['username'] ?>
                         </a>
 
-
+                        <a href="adminIndex.php" class="list-group-item list-group-item-action"><span><i class="fa fa-home" aria-hidden="true"></i>
+                        </span>Home</a>
                         <a href="view-user.php" class="list-group-item list-group-item-action"><span><i class="fa fa-user" aria-hidden="true"></i>
                         </span>Users &amp; Privileges</a>
                         <a href="create-new-user.php" class="list-group-item list-group-item-action"><span><i class="fa fa-user-plus" aria-hidden="true"></i>
@@ -224,8 +134,8 @@ if(!$result) {
                     <img id="default-profile-image" width ="200" height ="200" src="images/icon/userProfile/boy.svg"alt="" class="profile-image">
 
                 </div>
-                    
-                      <form class="mt-3" action="" method="post">
+
+                      <form class="mt-3" action="create-new-user.php" method="post">
                         <fieldset class="form-group">
                           <div class="container">
                             <div class="row">

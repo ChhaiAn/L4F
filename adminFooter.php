@@ -24,7 +24,7 @@
         var hide = function () {
             $('#user_deleted_msg').hide();
         };
-        setTimeout(hide, 2000 );
+        setTimeout(hide, 3000 );
       });
 
 

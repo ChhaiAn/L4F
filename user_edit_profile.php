@@ -70,6 +70,19 @@ if(isset($_POST['delete'])) {
               WHERE user_id ='$userid'";
   $result = mysqli_query($connection,$query);
 
+  $path = 'uploads'.'/'.$username;
+  echo $username;
+  echo $path;
+  if(is_dir($path)) {
+    echo "foloder exist";
+    $file = scandir($path);
+    print_r ($file);
+    rmdir($path);
+  }
+  else {
+    echo "folder does not exist";
+  }
+
   if($result){
     echo "user deleted";
   }
@@ -77,7 +90,7 @@ if(isset($_POST['delete'])) {
     echo mysqli_error($connection);
   }
 
-  header('Location: view-user.php');
+//  header('Location: view-user.php');
 }
 
 
@@ -176,7 +189,8 @@ $tmp_file = $_FILES['the_file']['tmp_name'];
                               Welcome, <?php echo $_SESSION['username'] ?>
                             </a>
 
-
+                            <a href="adminIndex.php" class="list-group-item list-group-item-action"><span><i class="fa fa-home" aria-hidden="true"></i>
+                            </span>Home</a>
                             <a href="view-user.php" class="list-group-item list-group-item-action"><span><i class="fa fa-user" aria-hidden="true"></i>
                             </span>Users &amp; Privileges</a>
                             <a href="create-new-user.php" class="list-group-item list-group-item-action"><span><i class="fa fa-user-plus" aria-hidden="true"></i>

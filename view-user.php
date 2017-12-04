@@ -22,6 +22,8 @@ $userCount = $row['COUNT(user_id)'];
                             <a href="#" class="list-group-item list-group-item-action active bg-info text-center">
                               Welcome, <?php echo $_SESSION['username']?>
                             </a>
+                            <a href="adminIndex.php" class="list-group-item list-group-item-action"><span><i class="fa fa-home" aria-hidden="true"></i>
+                            </span>Home</a>
                             <a href="view-user.php" class="list-group-item list-group-item-action"><span><i class="fa fa-user" aria-hidden="true"></i>
                             </span>Users &amp; Privileges</a>
                             <a href="create-new-user.php" class="list-group-item list-group-item-action"><span><i class="fa fa-user-plus" aria-hidden="true"></i>
@@ -30,7 +32,7 @@ $userCount = $row['COUNT(user_id)'];
                             <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
                     </div>
               </div><!--LEFT ASIDE CONTENT END-->
-              <div class="col-md-9 my-right-content">
+              <div class="col-md-9 my-right-content pb-3">
                     <div class="list-group ">
                             <a href="#" class="list-group-item list-group-item-action active bg-danger text-center">
                                 USERS &amp; PRIIVLEGES

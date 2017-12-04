@@ -26,7 +26,8 @@ if(!$result) {
                               Welcome, <span><?php echo $userName; ?></span>
                             </a>
 
-
+                            <a href="adminIndex.php" class="list-group-item list-group-item-action"><span><i class="fa fa-home" aria-hidden="true"></i>
+                            </span>Home</a>
                             <a href="view-user.php" class="list-group-item list-group-item-action"><span><i class="fa fa-user" aria-hidden="true"></i>
                             </span>Users &amp; Privileges</a>
                             <a href="create-new-user.php" class="list-group-item list-group-item-action"><span><i class="fa fa-user-plus" aria-hidden="true"></i>
