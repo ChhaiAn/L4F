@@ -66,22 +66,36 @@ if(isset($_POST['submit'])) {
 }
 // DELETE USER
 if(isset($_POST['delete'])) {
-   $query = " DELETE FROM USER_REGISTRATION
-              WHERE user_id ='$userid'";
-  $result = mysqli_query($connection,$query);
 
-  $path = 'uploads'.'/'.$username;
-  echo $username;
-  echo $path;
+
+  $path = 'uploads'.'/'.$username.'/'.'userprofile';
+
   if(is_dir($path)) {
-    echo "foloder exist";
-    $file = scandir($path);
-    print_r ($file);
-    rmdir($path);
+
+    $files = scandir($path);
+    $files = glob($path.'/*.*');
+
+
+    foreach($files as $file) {
+      if(is_file($file)) {
+        unlink($file);
+      }
+
   }
-  else {
-    echo "folder does not exist";
-  }
+
+
+    if(rmdir($path)) {
+
+      echo "folder remove";
+      $path = 'uploads'.'/'.$username;
+      rmdir($path);
+    };
+
+
+
+
+}
+
 
   if($result){
     echo "user deleted";
@@ -89,8 +103,11 @@ if(isset($_POST['delete'])) {
   else {
     echo mysqli_error($connection);
   }
+  $query = " DELETE FROM USER_REGISTRATION
+            WHERE user_id ='$userid'";
+  $result = mysqli_query($connection,$query);
 
-//  header('Location: view-user.php');
+  header('Location: view-user.php');
 }
 
 
