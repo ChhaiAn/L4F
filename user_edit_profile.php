@@ -22,6 +22,8 @@ $active = $row['active'];
 $userid = $row['user_id'];
 $usergender= $row['gender'];
 $userpicture = $row['profile_image'];
+$userbio = $row['about_me'];
+
 
 if ($userpicture == ""){
   $pictureDefault = false;
@@ -109,14 +111,6 @@ if(isset($_POST['delete'])) {
 
   header('Location: view-user.php');
 }
-
-
-
-
-
-
-
-
 
 // UPLOAD PIC TO DATABASE
 if(isset($_POST['imageUpload'])){
@@ -298,7 +292,7 @@ $tmp_file = $_FILES['the_file']['tmp_name'];
                               <fieldset class="mt-3">
 
                                   <label for="userBio">Biography </label><br>
-                                  <textarea class="form-control" name="userBio"></textarea>
+                                  <textarea class="form-control" name="userBio" placeholder="<?php echo $userbio; ?>"></textarea>
 
                               </fieldset>
                               <button type="submit" class="btn btn-primary my-2" name="submit">Submit</button>
